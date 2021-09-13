@@ -16,7 +16,7 @@ elseif ($action == '/skills'){
 elseif ($action == '/about'){
     include ('src/views/layout.php');
 }
-elseif ($action == '/projects'){
+elseif ($action == '/useful'){
     include ('src/views/layout.php');
 }
 elseif ($action == '/hearingAids'){

@@ -17,8 +17,8 @@ if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"j21s9_content_cv");
-$sql = "SELECT * FROM j21s9_content_cv WHERE alias = '".$q."'";
+mysqli_select_db($con,"j21s9_content");
+$sql = "SELECT * FROM j21s9_content WHERE alias = '".$q."'";
 
 $result = mysqli_query($con,$sql);
 

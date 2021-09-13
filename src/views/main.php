@@ -26,7 +26,18 @@ Your Creative Projects</div>
     SKILLS
   </div>
 <div class="customize-container">
-  <!-- <a class="customize-foto wow slideInRight" href="../image/aks.jpg" download  data-wow-delay="0ms" data-wow-duration="2000ms" role="progressbar" style="visibility: visible; animation-duration: 2000ms; animation-delay: 0ms; animation-name: slideInRight;"></a> -->
+  <a class="customize-foto" href="../image/aks.jpg" download  >
+    <div class="wow bounceInDown" data-wow-delay="0ms" data-wow-duration="5000ms" style="
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    font-size: 20px;
+    align-items: center; width: 100%; height: 100%; background: #8080801f; visibility: visible; animation-duration: 5000ms; animation-delay: 0ms; animation-name: bounceInDown;">
+    <h3 style="color: var(--hover-color); ">download CV</h3> 
+    <i class="fa fa-download"></i> 
+    </div>
+    
+  </a>
   
   <ul class="skill-items">
                         <li class="skill-item">
@@ -187,7 +198,7 @@ Your Creative Projects</div>
   </div>
 </section>
 
- <section class="section-2 scroll" id="projects" data-href="projects">
+ <section class="section-2 scroll" id="useful" data-href="useful">
   <a name="top" href="#"></a>
   <div class="section-title">Projects</div>
   <div id="hide_top" style="height:20px"></div> 
@@ -201,7 +212,7 @@ Your Creative Projects</div>
                echo "Failed to connect to MySQL: " . mysqli_connect_error();
                die();
            }
-           $sql = "SELECT * FROM j21s9_content LIMIT 3 ";
+           $sql = "SELECT * FROM j21s9_content WHERE catid=1 LIMIT 3 ";
            $res_data = mysqli_query($conn,$sql);
            
             echo "<section class='all-articles'>";

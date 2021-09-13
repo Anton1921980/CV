@@ -1,9 +1,9 @@
-    
+
 // появление контента
 (function () {
-    $(".logo-name").css("margin-left","-100px")
-    $( ".logo-name" ).animate({ "margin-left": "10px" }, 1000).delay("600");
-    $(".top-menu").css("margin-top","-100px")
+    $(".logo-name").css("margin-left", "-100px")
+    $(".logo-name").animate({ "margin-left": "10px" }, 1000).delay("600");
+    $(".top-menu").css("margin-top", "-100px")
     $(".top-menu").delay("2000").animate({ "margin-top": "0px" }, 1000);
 
     // $(".top-menu").hide().slideDown(2000);
@@ -27,11 +27,11 @@ let hoverColor = rootStyles.getPropertyValue('--hover-color');
 
 //animme
 var canvas = document.querySelector("#scene"),
-  ctx = canvas.getContext("2d"),
-  particles = [],
-  amount = 0,
-  mouse = {x:0,y:0},
-  radius = 1;
+    ctx = canvas.getContext("2d"),
+    particles = [],
+    amount = 0,
+    mouse = { x: 0, y: 0 },
+    radius = 1;
 
 var colors = ["lightgray", "gray", "darktgrey", "grey", "darkgrey"];
 
@@ -40,111 +40,111 @@ var copy = document.querySelector("#copy");
 var ww = canvas.width = window.innerWidth;
 var wh = canvas.height = window.innerHeight;
 
-function Particle(x,y){
-  this.x =  Math.random()*ww;
-  this.y =  Math.random()*wh;
-  this.dest = {
-    x : x,
-    y: y
-  };
-  this.r =  Math.random()*5 + 2;
-  this.vx = (Math.random()-0.5)*20;
-  this.vy = (Math.random()-0.5)*20;
-  this.accX = 0;
-  this.accY = 0;
-  this.friction = Math.random()*0.05 + 0.94;
+function Particle(x, y) {
+    this.x = Math.random() * ww;
+    this.y = Math.random() * wh;
+    this.dest = {
+        x: x,
+        y: y
+    };
+    this.r = Math.random() * 5 + 2;
+    this.vx = (Math.random() - 0.5) * 20;
+    this.vy = (Math.random() - 0.5) * 20;
+    this.accX = 0;
+    this.accY = 0;
+    this.friction = Math.random() * 0.05 + 0.94;
 
-  this.color = colors[Math.floor(Math.random()*6)];
+    this.color = colors[Math.floor(Math.random() * 6)];
 }
 
-Particle.prototype.render = function() {
+Particle.prototype.render = function () {
 
 
-  this.accX = (this.dest.x - this.x)/1000;
-  this.accY = (this.dest.y - this.y)/1000;
-  this.vx += this.accX;
-  this.vy += this.accY;
-  this.vx *= this.friction;
-  this.vy *= this.friction;
-
-  this.x += this.vx;
-  this.y +=  this.vy;
-
-  ctx.fillStyle = this.color;
-  ctx.beginPath();
-  ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
-  ctx.fill();
-
-  var a = this.x - mouse.x;
-  var b = this.y - mouse.y;
-
-  var distance = Math.sqrt( a*a + b*b );
-  if(distance<(radius*70)){
-    this.accX = (this.x - mouse.x)/100;
-    this.accY = (this.y - mouse.y)/100;
+    this.accX = (this.dest.x - this.x) / 1000;
+    this.accY = (this.dest.y - this.y) / 1000;
     this.vx += this.accX;
     this.vy += this.accY;
-  }
+    this.vx *= this.friction;
+    this.vy *= this.friction;
 
-}
+    this.x += this.vx;
+    this.y += this.vy;
 
-function onMouseMove(e){
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-}
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+    ctx.fill();
 
-function onTouchMove(e){
-  if(e.touches.length > 0 ){
-    mouse.x = e.touches[0].clientX;
-    mouse.y = e.touches[0].clientY;
-  }
-}
+    var a = this.x - mouse.x;
+    var b = this.y - mouse.y;
 
-function onTouchEnd(e){
-mouse.x = -9999;
-mouse.y = -9999;
-}
-
-function initScene(){
-  
-  ww = canvas.width = window.innerWidth;
-  wh = canvas.height = window.innerHeight;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  ctx.font = "bold "+(ww/5)+"px sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText(copy.value, ww/2, wh/2);
-
-  var data  = ctx.getImageData(0, 0, ww, wh).data;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.globalCompositeOperation = "screen";
-
-  particles = [];
-  for(var i=0;i<ww;i+=Math.round(ww/150)){
-    for(var j=0;j<wh;j+=Math.round(ww/150)){
-      if(data[ ((i + j*ww)*4) + 3] > 150){
-        particles.push(new Particle(i,j));
-      }
+    var distance = Math.sqrt(a * a + b * b);
+    if (distance < (radius * 70)) {
+        this.accX = (this.x - mouse.x) / 100;
+        this.accY = (this.y - mouse.y) / 100;
+        this.vx += this.accX;
+        this.vy += this.accY;
     }
-  }
-  amount = particles.length;
 
 }
 
-function onMouseClick(){
-  radius++;
-  if(radius ===5){
-    radius = 0;
-  }
+function onMouseMove(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+}
+
+function onTouchMove(e) {
+    if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }
+}
+
+function onTouchEnd(e) {
+    mouse.x = -9999;
+    mouse.y = -9999;
+}
+
+function initScene() {
+
+    ww = canvas.width = window.innerWidth;
+    wh = canvas.height = window.innerHeight;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = "bold " + (ww / 5) + "px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(copy.value, ww / 2, wh / 2);
+
+    var data = ctx.getImageData(0, 0, ww, wh).data;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "screen";
+
+    particles = [];
+    for (var i = 0; i < ww; i += Math.round(ww / 150)) {
+        for (var j = 0; j < wh; j += Math.round(ww / 150)) {
+            if (data[((i + j * ww) * 4) + 3] > 150) {
+                particles.push(new Particle(i, j));
+            }
+        }
+    }
+    amount = particles.length;
+
+}
+
+function onMouseClick() {
+    radius++;
+    if (radius === 5) {
+        radius = 0;
+    }
 }
 
 function render(a) {
-  requestAnimationFrame(render);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (var i = 0; i < amount; i++) {
-    particles[i].render();
-  }
+    requestAnimationFrame(render);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < amount; i++) {
+        particles[i].render();
+    }
 };
 
 copy.addEventListener("keyup", initScene);
@@ -172,7 +172,7 @@ requestAnimationFrame(render);
 //   if(!body.classList.contains('disable-hover')) {
 //     body.classList.add('disable-hover')
 //   }
-  
+
 //   timer = setTimeout(function(){
 //     body.classList.remove('disable-hover')
 //   },500);
@@ -250,7 +250,7 @@ if (supportsPassive) {
 if ($(window).width() < 480 || $(window).height() < 480) {
     document.getElementById('changetext').innerHTML = '<i class="fa fa-phone"></i>&nbsp callback';
 
-    
+
 }
 
 //ajax 
@@ -258,8 +258,8 @@ $('document').ready(function () {
 
     $.ajaxPrefilter(function (options, originalOptions, jqXHR) { options.async = true; })
 
-// search подключем
-    $("#search").on("click", function(){
+    // search подключем
+    $("#search").on("click", function () {
         $('head').append('<link rel="stylesheet" type="text/css" href="../search/style.css"></link>');
         $('head').append('<script defer type="text/javascript" src="../search/script.js"></script>');
     })
@@ -290,7 +290,7 @@ $('document').ready(function () {
     }
 
     $("#map").on('click', function () {
-        $("#map").css("width", "100%").css("height", "350px").css("background", "none").css("margin","-28px");
+        $("#map").css("width", "100%").css("height", "350px").css("background", "none").css("margin", "-28px");
         $("#map").append('<p style="width:400px;height:350px;overflow:hidden;"><iframe id="iframeName" width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"  style="border:0; margin-top: -150px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1271.108529559984!2d30.545837551026835!3d50.41842737096008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf6b8a95e60d%3A0x75a2a4fafd8f0414!2z0LHRg9C7LiDQlNGA0YPQttCx0Ysg0J3QsNGA0L7QtNC-0LIsIDMyLCDQmtC40LXQsiwgMDIwMDA!5e0!3m2!1sru!2sua!4v1624786387095!5m2!1sru!2sua" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>');
     })
 
@@ -315,48 +315,48 @@ $('document').ready(function () {
 
 
 
-        $('.company-logo').on('click', function (e) {
-            // e.preventDefault();
+    $('.company-logo').on('click', function (e) {
+        // e.preventDefault();
 
 
-bodyColor = rootStyles.getPropertyValue('--body-color');
-          
-const bodyColor1 = rootStyles.getPropertyValue('--body-color1');
-const bodyColor2 = rootStyles.getPropertyValue('--body-color2');
-const bodyColor3 = rootStyles.getPropertyValue('--body-color3');
-const linkColor1 = rootStyles.getPropertyValue('--link-color1');
-const linkColor2 = rootStyles.getPropertyValue('--link-color2');
-const linkColor3 = rootStyles.getPropertyValue('--link-color3');
-const menuColor1 = rootStyles.getPropertyValue('--menu-color1');
-const menuColor2 = rootStyles.getPropertyValue('--menu-color2');
-const menuColor3 = rootStyles.getPropertyValue('--menu-color3');
-const hoverColor1 = rootStyles.getPropertyValue('--hover-color1');
-const hoverColor2 = rootStyles.getPropertyValue('--hover-color2');
-const hoverColor3 = rootStyles.getPropertyValue('--hover-color3');
-    //записать в базу данных выбор из админки
+        bodyColor = rootStyles.getPropertyValue('--body-color');
 
-            //тут танцы с бубнон со вторым сравнением и slice, по простому не работает
-            let bodyColorValue = bodyColor.slice(1)
+        const bodyColor1 = rootStyles.getPropertyValue('--body-color1');
+        const bodyColor2 = rootStyles.getPropertyValue('--body-color2');
+        const bodyColor3 = rootStyles.getPropertyValue('--body-color3');
+        const linkColor1 = rootStyles.getPropertyValue('--link-color1');
+        const linkColor2 = rootStyles.getPropertyValue('--link-color2');
+        const linkColor3 = rootStyles.getPropertyValue('--link-color3');
+        const menuColor1 = rootStyles.getPropertyValue('--menu-color1');
+        const menuColor2 = rootStyles.getPropertyValue('--menu-color2');
+        const menuColor3 = rootStyles.getPropertyValue('--menu-color3');
+        const hoverColor1 = rootStyles.getPropertyValue('--hover-color1');
+        const hoverColor2 = rootStyles.getPropertyValue('--hover-color2');
+        const hoverColor3 = rootStyles.getPropertyValue('--hover-color3');
+        //записать в базу данных выбор из админки
 
-            if (bodyColorValue == bodyColor || bodyColorValue == bodyColor.slice(1)) {
-                root.style.setProperty('--body-color', bodyColor2);
-                root.style.setProperty('--link-color', linkColor2);
-                root.style.setProperty('--menu-color', menuColor2);
-                root.style.setProperty('--hover-color', hoverColor2);
-            }
-            if (bodyColorValue == bodyColor2 || bodyColorValue == bodyColor2.slice(1)) {
-                root.style.setProperty('--body-color', bodyColor3);
-                root.style.setProperty('--link-color', linkColor3);
-                root.style.setProperty('--menu-color', menuColor3);
-                root.style.setProperty('--hover-color', hoverColor3);
-            }
-            if (bodyColorValue == bodyColor3 || bodyColorValue == bodyColor3.slice(1)) {
-                root.style.setProperty('--body-color', bodyColor1);
-                root.style.setProperty('--link-color', linkColor1);
-                root.style.setProperty('--menu-color', menuColor1);
-                root.style.setProperty('--hover-color', hoverColor1);
-            }
-        })
+        //тут танцы с бубнон со вторым сравнением и slice, по простому не работает
+        let bodyColorValue = bodyColor.slice(1)
+
+        if (bodyColorValue == bodyColor || bodyColorValue == bodyColor.slice(1)) {
+            root.style.setProperty('--body-color', bodyColor2);
+            root.style.setProperty('--link-color', linkColor2);
+            root.style.setProperty('--menu-color', menuColor2);
+            root.style.setProperty('--hover-color', hoverColor2);
+        }
+        if (bodyColorValue == bodyColor2 || bodyColorValue == bodyColor2.slice(1)) {
+            root.style.setProperty('--body-color', bodyColor3);
+            root.style.setProperty('--link-color', linkColor3);
+            root.style.setProperty('--menu-color', menuColor3);
+            root.style.setProperty('--hover-color', hoverColor3);
+        }
+        if (bodyColorValue == bodyColor3 || bodyColorValue == bodyColor3.slice(1)) {
+            root.style.setProperty('--body-color', bodyColor1);
+            root.style.setProperty('--link-color', linkColor1);
+            root.style.setProperty('--menu-color', menuColor1);
+            root.style.setProperty('--hover-color', hoverColor1);
+        }
+    })
 
 
     $("#loadMore").on('click', function (event) {
@@ -601,28 +601,27 @@ $('document').ready(function () {
         e.preventDefault(); //не переход на другую страницу  
         let id = $(this).attr('href');
         let activeLink = this;
-        $("#txtHint").remove();
+        // $("#txtHint").remove(); //прыгал див прикликах на следующие поменял на if
 
         function readyToShow(link) {
 
+            if (!$("#txtHint").hasClass("ajax-active")) {
+                if ($(activeLink).hasClass("title")) {
+                    $("#append1").append('<div id="txtHint"></div>')
+                } else if ($(activeLink).hasClass("search-text")) {
+                    $("#append0").append('<div id="txtHint"></div>')
+                }
+                else if ($(activeLink).hasClass("useful")) {
+                    $("#append2").append('<div id="txtHint"></div>')
+                }
 
-            if ($(activeLink).hasClass("title")) {
-                $("#append1").append('<div id="txtHint"></div>')
-            } else if ($(activeLink).hasClass("search-text")) {
-                $("#append0").append('<div id="txtHint"></div>')
-            }   
-             else if ($(activeLink).hasClass("useful")) {
-                $("#append2").append('<div id="txtHint"></div>')
+                $("#txtHint").addClass("ajax-active");
             }
-            
-            $("#txtHint").addClass("ajax-active");
             $(".useful-link").removeClass("ajax-active");
             $(activeLink).addClass("ajax-active");
         }
-
         readyToShow(this);
         showContent(id, scrollToAjax);
-
 
         //меняем урл при появлении аякс txtHint проверить при скроле конфликты
 
@@ -660,7 +659,7 @@ $('document').ready(function () {
 // click to section + history API url change + scroll
 $('.nav-link').on('click', function (e) {
 
-    if ((window.location.href).includes('test') || (window.location.href).includes('projects/') || (window.location.href).includes('skills/')) {
+    if ((window.location.href).includes('test') || (window.location.href).includes('useful/') || (window.location.href).includes('products/')) {
         mainPage();
     }
     function mainPage() {
@@ -949,7 +948,7 @@ function do_1() {
     }
 }
 function do_2() {
-    if ( $("#contentHolder").length && !window.location.href.includes("useful") && !$("#txtHint").hasClass("page")) {
+    if ($("#contentHolder").length && !window.location.href.includes("useful") && !$("#txtHint").hasClass("page")) {
         hT = $('#useful').offset().top; //блок ниже
         hH = $('#useful').outerHeight();
         hT2 = $('.page-container-text2').offset().top; //блок выше
@@ -976,8 +975,8 @@ function do_3() {
         }
     }
 }
-    //смена url при скроле, если txtHint открыт отключаем      
-    function do_4() {
+//смена url при скроле, если txtHint открыт отключаем      
+function do_4() {
     if (!$('#txtHint').length && !$("#contentHolder").length && !window.location.href.includes("useful/") && !window.location.href.includes("products/")) {
 
         $('.scroll').each(function (i, el) {
@@ -1020,19 +1019,19 @@ function do_3() {
 var body = document.body,
     timer;
 
-window.addEventListener('scroll', function() {
-  clearTimeout(timer);
-  if(!body.classList.contains('disable-hover')) {
-    body.classList.add('disable-hover')
-  }
-  
-  timer = setTimeout(function(){
-    body.classList.remove('disable-hover')
-  },500);
-  timer =  setTimeout(do_4(),100)
-  timer =  setTimeout(do_1(),150)
-  timer =  setTimeout(do_2(),200)
-  timer =  setTimeout(do_3(),250)
+window.addEventListener('scroll', function () {
+    clearTimeout(timer);
+    if (!body.classList.contains('disable-hover')) {
+        body.classList.add('disable-hover')
+    }
+
+    timer = setTimeout(function () {
+        body.classList.remove('disable-hover')
+    }, 500);
+    timer = setTimeout(do_4(), 100)
+    timer = setTimeout(do_1(), 150)
+    timer = setTimeout(do_2(), 200)
+    timer = setTimeout(do_3(), 250)
 }, false);
 
 
@@ -1285,84 +1284,3 @@ $(document).ready(function () {
         //     $(".top-menu").removeClass('top-menu-fixed').fadeIn();
         // };
 
-//jquery version check
-// our amazing work, tabs2 
-// $(document).ready(function () {
-//     $('#myList li').hover(function () {
-//         let hover = document.getElementById('box-hover')
-//         this.append(hover);
-//         $('#box-hover').slideDown(400);
-//     },
-//         function () {
-//             $('#box-hover').slideUp(200);
-//             $('#box-hover').stop(false, true);
-//         })
-//     size_li = $("#myList li").size();
-//     let x = 12;
-//     $('#myList li:lt(' + x + ')').show();
-//     $('#loadMore').click(function () {
-//         x = (x + 12 <= size_li) ? x + 12 : size_li;
-//         $('#myList li:lt(' + x + ')').show();
-//         if (x == size_li) {
-//             $('#loadMore').hide();
-//         }
-//     });
-
-//     $('[data-id]').click(function () {
-//         $('#myList li:lt(' + x + ')').show();
-//         $(".tabs-title2").removeClass("filtered");
-//         $("#myList li::nth-child(4n)").addClass("3");
-//         $("#myList li::nth-child(4n-1)").addClass("2");
-//         $("#myList li::nth-child(4n-2)").addClass("4");
-//         $("#myList li::nth-child(4n-3)").addClass("5");
-//         let items = $('#myList li');
-//         let id = $(this).attr('data-id');
-//         if (id == 1) {
-//             $('#myList li:lt(' + x + ')').show();
-//             $('#loadMore').show();
-//             this.classList.toggle("filtered");
-//         }
-//         else {
-//             $("#myList li").not(`[class="${id}"]`).hide();
-//             $('#loadMore').hide();
-//             this.classList.toggle("filtered");
-//         }
-//     });
-// });
-
-//what people say about the Ham, slider 
-// const sliderWrapper = document.getElementsByClassName('wrapper-slider')[0];
-// sliderWrapper.addEventListener('click', ({ target }) => {
-//     if (target.classList.contains('img-slider')) {
-//         let activeIndex = target.dataset.set;
-//         let circles = Array.from(document.getElementsByClassName('img-slider'));
-//         let reviews = Array.from(document.getElementsByClassName('review-container'));
-//         circles.forEach(circle => circle.classList.remove('zoom'));
-//         circles[activeIndex - 1].classList.add('zoom');
-//         reviews.forEach(review => review.classList.remove('active'));
-//         reviews[activeIndex - 1].classList.add('active');
-//     }
-// });
-// const leftArrowBtn = document.getElementsByClassName('btn-left')[0];
-// leftArrowBtn.addEventListener('click', () => {
-//     let circles = Array.from(document.getElementsByClassName('img-slider'));
-//     let prevActiveIndex = circles.findIndex(circle => circle.classList.contains('zoom'));
-//     let nextActiveIndex = prevActiveIndex === 0 ? circles.length - 1 : prevActiveIndex - 1;
-//     circles.forEach(circle => circle.classList.remove('zoom'));
-//     circles[nextActiveIndex].classList.add('zoom');
-//     activateReview(nextActiveIndex);
-// });
-// const rightArrowBtn = document.getElementsByClassName('btn-right')[0];
-// rightArrowBtn.addEventListener('click', () => {
-//     let circles = Array.from(document.getElementsByClassName('img-slider'));
-//     let prevActiveIndex = circles.findIndex(circle => circle.classList.contains('zoom'));
-//     let nextActiveIndex = prevActiveIndex === circles.length - 1 ? 0 : prevActiveIndex + 1;
-//     circles.forEach(circle => circle.classList.remove('zoom'));
-//     circles[nextActiveIndex].classList.add('zoom');
-//     activateReview(nextActiveIndex);
-// });
-// function activateReview(index) {
-//     let reviews = Array.from(document.getElementsByClassName('review-container'));
-//     reviews.forEach(review => review.classList.remove('active'));
-//     reviews[index].classList.add('active');
-// }

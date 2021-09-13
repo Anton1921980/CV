@@ -869,7 +869,7 @@ background-image: url(../image/lap.jpg);
 }
 
 .tabs-title:hover img {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     overflow : hidden;
 }
 
@@ -1693,7 +1693,7 @@ h2 {
 }
 
 .useful-link:hover img {
-    transform: scale(0.95);
+    /* transform: scale(0.95); */
 }
 
 .useful-link:hover div {
@@ -1729,8 +1729,8 @@ h2 {
 }
 #txtHint {
     width           : 71.5%;
-    border: 1px solid;
-  cursor: auto;
+    /* border: 1px solid; */
+    cursor: auto;
     /* background   : white; */
     margin          : 0 auto;
     margin-top      : 20px;

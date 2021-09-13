@@ -75,7 +75,7 @@
           <a class="nav-item nav-link click" href="main">main</a>
           <a class="nav-item nav-link click" href="skills">skills</a>                
           <a class="nav-item nav-link click" href="about">about</a>              
-          <a class="nav-item nav-link click" href="projects">projects</a>
+          <a class="nav-item nav-link click" href="useful">projects</a>
           <a class="nav-item nav-link click" href="contacts">contacts</a>   
         </nav>       
         <div

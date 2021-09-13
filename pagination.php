@@ -10,7 +10,7 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         die();
     }
-    $sql = "SELECT * FROM j21s9_content LIMIT $offset, $no_of_records_per_page";
+    $sql = "SELECT * FROM j21s9_content WHERE catid=1 LIMIT $offset, $no_of_records_per_page";
     $res_data = mysqli_query($conn,$sql);
     echo "<section class='all-articles'>";
     while($row = mysqli_fetch_assoc($res_data)){              
