@@ -106,7 +106,7 @@ Your Creative Projects</div>
 </section>
 
 
-<section class="section-1 scroll" id="about" data-href="about">
+<section data-simplebar class="section-1 scroll" id="about" data-href="about">
   <a name="top" href="#"></a>
   <div id="hide_top2" style="height:20px"></div> 
 
@@ -175,8 +175,8 @@ Your Creative Projects</div>
     <li id="fourth-tab-content" class="tabs-content-all">
       <ul class="tabs3">
         <li class="first-tab"></li>
-        <li class="tabs-title"><a class='useful-link title'  href='dan'><div class='useful-link-image'><img src='image\/logo_dan.png'></div><div>DAN-IT education</div></a></li>
-        <li class="tabs-title"><a class='useful-link title'  href='pet'><div class='useful-link-image'><img src='image\/pet.png'></div><div>PET projects</div></a></li>
+        <li class="tabs-title"><a class='useful-link title projects'  href='dan'><div class='useful-link-image'><img src='image\/logo_dan.png'></div><div>DAN-IT education projects</div></a></li>
+        <li class="tabs-title"><a class='useful-link title projects'  href='pet'><div class='useful-link-image'><img src='image\/pet.png'></div><div>PET projects</div></a></li>
         <!-- <li class="tabs-title"><a class='useful-link title'  href='ric'><div class='useful-link-image'><img src='images\/btrict.jpg'></div><div>тип RIC</div></a></li>    -->
       </ul> 
     </li>   

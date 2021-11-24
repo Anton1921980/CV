@@ -17,10 +17,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
 
     <link rel="stylesheet" href="../css/main.css" />   
-    
+
     <script defer type="text/javascript"  src="../script/jquery_3.6.0.js"></script>   
   
-    <script defer type="text/javascript" defer src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
+    <!-- <script defer type="text/javascript" defer src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>   -->
 
 <!-- jquery для tabs2 фильтров -->
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> -->
@@ -32,7 +32,8 @@
     <script defer type="text/javascript" src="../script/wow.min.js"></script>
     
   </head>
-  <body>
+  <body >
+ 
     <!-- <script>
       AOS.init();
     </script> -->
